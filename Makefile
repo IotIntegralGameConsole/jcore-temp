@@ -132,7 +132,11 @@ $(BOARD_NAMES): tools
 # create a handy last_output link
 ifneq ($(LAST_OUTPUT),false)
 	rm -f last_output
+ifeq ($(shell uname),Darwin)
+	ln -fs "$(REL_OUTPUT_DIR)" last_output
+else
 	ln -Tfs "$(REL_OUTPUT_DIR)" last_output
+endif
 endif
 # create a stub Makefile in the output directory that captures the
 # above variables so the other targets can be run later
