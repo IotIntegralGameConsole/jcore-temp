@@ -12,7 +12,9 @@
 
 #include <stdio.h>
 #include <string.h>
+#if !( defined(__APPLE__) && defined(__MACH__) )
 #include <malloc.h>
+#endif  /* !( defined(__APPLE__) && defined(__MACH__) ) */
 #include <stdlib.h>
 
 #ifndef RAMSIZE
