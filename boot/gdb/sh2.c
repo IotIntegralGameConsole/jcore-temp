@@ -580,7 +580,7 @@ __asm__ (
 ".global gdb_return_from_exception\n"
 "gdb_return_from_exception:\n"
   /* find register_file */
-"  mov.l %0, r0\n"
+"  mov.l p_register_file, r0\n"
 "  lds.l @r0+, pr\n"
 "  ldc.l @r0+, gbr\n"
 "  ldc.l @r0+, vbr\n"
@@ -621,9 +621,7 @@ __asm__ (
 "  rte\n"
 "  nop\n"
 ".align 2\n"
-#if 0
-"  register_file: .long _register_file\n"
-#endif
+"  p_register_file: .long register_file\n"
 
 /* "kill" and "detach" try to simulate a reset */
 ".section .text\n"
@@ -637,5 +635,4 @@ __asm__ (
 "   mov.l @r0, r0\n"
 "   jmp @r0\n"
 "   nop\n"
-
 );

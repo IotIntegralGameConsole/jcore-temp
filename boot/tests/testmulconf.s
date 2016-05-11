@@ -42,8 +42,8 @@ _testgo:
 !---------------------
 !===[5]===============
 !---------------------
- mov.l  _pram20, r4
- mov.l  _pram21, r5
+ mov.l  pram20, r4
+ mov.l  pram21, r5
  mov    #3, r0
  mov.w  r0, @r4
  add    #2, r4
@@ -66,8 +66,8 @@ _testgo:
  jmp    @r13
  nop
 !----
- mov.l  _pram20, r4
- mov.l  _pram21, r5
+ mov.l  pram20, r4
+ mov.l  pram21, r5
  mov    #4, r0
  mov.w  r0, @r4
  add    #2, r4
@@ -90,7 +90,7 @@ _testgo:
  jmp    @r13
  nop
 !---------------------
- mov.l  _pram20, r4
+ mov.l  pram20, r4
  mov    #4, r0
  mov.w  r0, @r4
  add    #2, r4
@@ -110,7 +110,7 @@ _testgo:
  jmp    @r13
  nop
 !----
- mov.l  _pram20, r4
+ mov.l  pram20, r4
  mov    #7, r0
  mov.w  r0, @r4
  add    #2, r4
@@ -133,14 +133,14 @@ _testgo:
  bra    skip3
  nop
  .align 4
-_pram20:   .long _ram0+128
-_pram21:   .long _ram0+128+0x10
+pram20:   .long ram0+128
+pram21:   .long ram0+128+0x10
 skip3:
 !---------------------
 !===[4]===============
 !---------------------
  mov    #0x55,  r0
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #4,  r4
  mov    #8,  r1
  mov    #9,  r2
@@ -160,7 +160,7 @@ skip3:
  nop
 !---------------------
  mov    #0xaa,  r0
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #4,  r4
  mov    #7,  r1
  mov    #-8,  r2
@@ -180,7 +180,7 @@ skip3:
  nop
 !---------------------
  mov    #0x55,  r0
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #4,  r4
  mov    #6,  r1
  mov    #7,  r2
@@ -200,7 +200,7 @@ skip3:
  nop
 !---------------------
  mov    #0xaa,  r0
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  mov    #5,  r1
  mov    #6,  r2
  lds    r0,   mach
@@ -219,7 +219,7 @@ skip3:
  nop
 !---------------------
  mov    #0xaa,  r0
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  mov    #5,  r1
  mov    #-6,  r2
  lds    r0,   mach
@@ -238,7 +238,7 @@ skip3:
  nop
 !---------------------
  mov    #0xff,  r1
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #4, r4
  mov.l  r1, @r4
  lds    r1, mach
@@ -259,7 +259,7 @@ skip3:
  nop
 !---------------------
  mov    #0xff,  r1
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #4,  r4
  lds    r1, mach
  mov    #0, r0     ! S=0
@@ -279,7 +279,7 @@ skip3:
  nop
 !---------------------
  mov    #0xaa,   r0
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #4,   r4
  lds    r0,   macl
  mov    r4,   r5
@@ -305,7 +305,7 @@ skip3:
 !---------------------
  mov    #0xaa,   r0
  mov    #0x55,   r1
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #4,   r4
  lds    r0,   macl
  sts.l  macl, @-r4 ! <--------
@@ -322,7 +322,7 @@ skip3:
  nop
 !---------------------
  mov    #0x55,   r0
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #4,   r4
  lds    r0,   macl
  sts.l  macl, @-r4 ! <--------
@@ -339,7 +339,7 @@ skip3:
  nop
 !---------------------
  mov    #0xaa,   r0
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #8,   r4
  lds    r0,   macl
  sts.l  macl, @-r4 ! <--------
@@ -361,7 +361,7 @@ skip3:
  nop
 !---------------------
  mov    #0xaa,   r0
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #4,   r4
  lds    r0,   macl
  sts.l  macl, @-r4 ! <--------
@@ -379,7 +379,7 @@ skip3:
 !===[3]===============
 !---------------------
  mov    #0x55,  r0
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #4,  r4
  mov    #8,  r1
  mov    #9,  r2
@@ -398,7 +398,7 @@ skip3:
  nop
 !---------------------
  mov    #0xaa,  r0
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #4,  r4
  mov    #7,  r1
  mov    #-8,  r2
@@ -417,7 +417,7 @@ skip3:
  nop
 !---------------------
  mov    #0x55,  r0
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #4,  r4
  mov    #6,  r1
  mov    #7,  r2
@@ -436,7 +436,7 @@ skip3:
  nop
 !---------------------
  mov    #0xaa,  r0
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  mov    #5,  r1
  mov    #6,  r2
  lds    r0,   mach
@@ -454,7 +454,7 @@ skip3:
  nop
 !---------------------
  mov    #0xaa,  r0
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  mov    #5,  r1
  mov    #-6,  r2
  lds    r0,   mach
@@ -472,7 +472,7 @@ skip3:
  nop
 !---------------------
  mov    #0xff,  r1
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #4, r4
  mov.l  r1, @r4
  lds    r1, mach
@@ -493,7 +493,7 @@ skip3:
  nop
 !---------------------
  mov    #0xff,  r1
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #4,  r4
  lds    r1, mach
  mov    #0, r0     ! S=0
@@ -513,7 +513,7 @@ skip3:
  nop
 !---------------------
  mov    #0xaa,   r0
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #4,   r4
  lds    r0,   mach
  mov    r4,   r5
@@ -539,7 +539,7 @@ skip3:
 !---------------------
  mov    #0xaa,   r0
  mov    #0x55,   r1
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #4,   r4
  lds    r0,   mach
  sts.l  mach, @-r4 ! <--------
@@ -556,7 +556,7 @@ skip3:
  nop
 !---------------------
  mov    #0x55,   r0
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #4,   r4
  lds    r0,   mach
  sts.l  mach, @-r4 ! <--------
@@ -573,7 +573,7 @@ skip3:
  nop
 !---------------------
  mov    #0xaa,   r0
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #8,   r4
  lds    r0,   mach
  sts.l  mach, @-r4 ! <--------
@@ -595,7 +595,7 @@ skip3:
  nop
 !---------------------
  mov    #0xaa,   r0
- mov.l  _pram10, r4
+ mov.l  pram10, r4
  add    #4,   r4
  lds    r0,   mach
  sts.l  mach, @-r4 ! <--------
@@ -614,14 +614,14 @@ skip3:
  bra    skip2
  nop
  .align 4
-_pram10:   .long _ram0+128
-_pram11:   .long _ram0+128+0x10
+pram10:   .long ram0+128
+pram11:   .long ram0+128+0x10
 skip2:
 !---------------------
 !===[2]===============
 !---------------------
  mov    #0x55,  r0
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov.l  r0,  @r4
  mov    #8,  r1
  mov    #9,  r2
@@ -640,7 +640,7 @@ skip2:
  nop
 !---------------------
  mov    #0xaa,  r0
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov.l  r0,  @r4
  mov    #7,  r1
  mov    #-8,  r2
@@ -659,7 +659,7 @@ skip2:
  nop
 !---------------------
  mov    #0x55,  r0
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov.l  r0,  @r4
  mov    #6,  r1
  mov    #7,  r2
@@ -678,7 +678,7 @@ skip2:
  nop
 !---------------------
  mov    #0xaa,  r0
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov.l  r0,  @r4
  mov    #5,  r1
  mov    #6,  r2
@@ -697,7 +697,7 @@ skip2:
  nop
 !---------------------
  mov    #0xaa,  r0
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov.l  r0,  @r4
  mov    #5,  r1
  mov    #-6,  r2
@@ -718,13 +718,13 @@ skip2:
  mov    #0,  r0
  mov    #4,  r1
  mov    #5,  r2
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov.l  r0,  @r4
  add    #4,  r4
  mov.l  r1,  @r4
  add    #4,  r4
  mov.l  r2,  @r4
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  lds    r0, mach   ! R0=0
  ldc    r0, sr     ! S=0
  lds.l  @r4+, macl ! <--------
@@ -743,13 +743,13 @@ skip2:
  mov    #0,  r0
  mov    #4,  r1
  mov    #5,  r2
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov.l  r0,  @r4
  add    #4,  r4
  mov.w  r1,  @r4
  add    #2,  r4
  mov.w  r2,  @r4
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  lds    r0, mach   ! R0=0
  ldc    r0, sr     ! S=0
  lds.l  @r4+, macl ! <--------
@@ -765,7 +765,7 @@ skip2:
  jmp    @r13
  nop
 !---------------------
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov    #0xaa,   r0
  mov.l  r0,  @r4
  mov    r4,  r5
@@ -780,7 +780,7 @@ skip2:
  jmp    @r13
  nop
 !---------------------
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov    #0x55,   r0
  mov.l  r0,  @r4
  mov    #0xaa,   r1
@@ -792,7 +792,7 @@ skip2:
  jmp    @r13
  nop
 !---------------------
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov    #0x55,   r0
  mov.l  r0,  @r4
  mov    #0x00,   r1
@@ -804,10 +804,10 @@ skip2:
  jmp    @r13
  nop
 !---------------------
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov    #0x55, r0
  mov.l  r0,  @r4
- mov.l  _pram01, r5
+ mov.l  pram01, r5
  lds.l  @r4+, macl ! <--------
  sts.l  macl, @-r5 ! <--------
  mov.l  @r5+, r0
@@ -816,7 +816,7 @@ skip2:
  jmp    @r13
  nop
 !---------------------
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov    #0xaa, r0
  mov.l  r0,  @r4
  lds.l  @r4+, macl ! <--------
@@ -829,7 +829,7 @@ skip2:
 !===[1]===============
 !---------------------
  mov    #0x55,  r0
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov.l  r0,  @r4
  mov    #8,  r1
  mov    #9,  r2
@@ -847,7 +847,7 @@ skip2:
  nop
 !---------------------
  mov    #0xaa,  r0
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov.l  r0,  @r4
  mov    #7,  r1
  mov    #-8,  r2
@@ -865,7 +865,7 @@ skip2:
  nop
 !---------------------
  mov    #0x55,  r0
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov.l  r0,  @r4
  mov    #6,  r1
  mov    #7,  r2
@@ -883,7 +883,7 @@ skip2:
  nop
 !---------------------
  mov    #0xaa,  r0
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov.l  r0,  @r4
  mov    #5,  r1
  mov    #6,  r2
@@ -901,7 +901,7 @@ skip2:
  nop
 !---------------------
  mov    #0xaa,  r0
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov.l  r0,  @r4
  mov    #5,  r1
  mov    #-6,  r2
@@ -921,13 +921,13 @@ skip2:
  mov    #0,  r0
  mov    #4,  r1
  mov    #5,  r2
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov.l  r0,  @r4
  add    #4,  r4
  mov.l  r1,  @r4
  add    #4,  r4
  mov.l  r2,  @r4
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  lds    r0, macl   ! R0=0
  ldc    r0, sr     ! S=0
  lds.l  @r4+, mach ! <--------
@@ -946,13 +946,13 @@ skip2:
  mov    #0,  r0
  mov    #4,  r1
  mov    #5,  r2
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov.l  r0,  @r4
  add    #4,  r4
  mov.w  r1,  @r4
  add    #2,  r4
  mov.w  r2,  @r4
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  lds    r0, macl   ! R0=0
  ldc    r0, sr     ! S=0
  lds.l  @r4+, mach ! <--------
@@ -968,7 +968,7 @@ skip2:
  jmp    @r13
  nop
 !---------------------
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov    #0xaa,   r0
  mov.l  r0,  @r4
  mov    r4,  r5
@@ -983,7 +983,7 @@ skip2:
  jmp    @r13
  nop
 !---------------------
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov    #0x55,   r0
  mov.l  r0,  @r4
  mov    #0xaa,   r1
@@ -995,7 +995,7 @@ skip2:
  jmp    @r13
  nop
 !---------------------
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov    #0x55,   r0
  mov.l  r0,  @r4
  mov    #0x00,   r1
@@ -1007,10 +1007,10 @@ skip2:
  jmp    @r13
  nop
 !---------------------
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov    #0x55, r0
  mov.l  r0,  @r4
- mov.l  _pram01, r5
+ mov.l  pram01, r5
  lds.l  @r4+, mach ! <--------
  sts.l  mach, @-r5 ! <--------
  mov.l  @r5+, r0
@@ -1019,7 +1019,7 @@ skip2:
  jmp    @r13
  nop
 !---------------------
- mov.l  _pram00, r4
+ mov.l  pram00, r4
  mov    #0xaa, r0
  mov.l  r0,  @r4
  lds.l  @r4+, mach ! <--------
@@ -1034,8 +1034,8 @@ skip2:
  nop
 !-----------------------------
  .align 4
-_pram00:   .long _ram0+128
-_pram01:   .long _ram0+128+0x10
+pram00:   .long ram0+128
+pram01:   .long ram0+128+0x10
 !-----------------------------
 _testfinish:
 

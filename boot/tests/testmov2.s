@@ -50,7 +50,7 @@ _mova_target4:
  MOV.W @(disp, GBR), R0
  MOV.B @(disp, GBR), R0
  **********************/
- mov.l   _pram0, r1
+ mov.l   pram0, r1
  ldc     r1, gbr
 
  mov.l   _p11223344, r0
@@ -111,9 +111,9 @@ _mova_target4:
  MOV.W R0, @(disp, Rn)
  MOV.B R0, @(disp, Rn)
  *********************/
- mov.l   _pram0,     r1
+ mov.l   pram0,     r1
  mov.l   _p11223344, r2
- mov.l   _pram0_16,  r3
+ mov.l   pram0_16,  r3
 
  mov.l   r2, @(16, r1)
  mov.l   @r3, r0
@@ -171,10 +171,10 @@ _mova_target4:
  MOV.W @(disp, Rm), R0
  MOV.B @(disp, Rm), R0
  *********************/
- mov.l   _pram0_16,  r1
+ mov.l   pram0_16,  r1
  mov.l   _p11223344, r2
  mov.l   r2, @r1
- mov.l   _pram0,     r3
+ mov.l   pram0,     r3
 
  mov.l   @(16, r3), r4
  cmp/eq  r4, r2
@@ -200,14 +200,14 @@ _mova_target4:
 /*******************
  MOV.B @(R0, Rm), Rn
  *******************/
- mov.l   _pram0,     r1
+ mov.l   pram0,     r1
  mov.l   _p04050607, r0
  mov.l   _p11223344, r2
  mov.l   r0,  @(0, r1)
  mov.l   r2,  @(4, r1)
  
  mov.b   @(0, r1), r0
- mov.l   _pram0, r3 
+ mov.l   pram0, r3 
  mov.b   @(r0, r3), r4
  mov.l   _p00000011, r0
  cmp/eq  r4, r0
@@ -218,14 +218,14 @@ _mova_target4:
 /*******************
  MOV.W @(R0, Rm), Rn
  *******************/
- mov.l   _pram0,     r1
+ mov.l   pram0,     r1
  mov.l   _p04050607, r0
  mov.l   _p11223344, r2
  mov.l   r0,  @(0, r1)
  mov.l   r2,  @(4, r1)
  
  mov.b   @(0, r1), r0
- mov.l   _pram0, r3 
+ mov.l   pram0, r3 
  mov.w   @(r0, r3), r4
  mov.l   _p00001122, r0
  cmp/eq  r4, r0
@@ -236,14 +236,14 @@ _mova_target4:
 /*******************
  MOV.L @(R0, Rm), Rn
  *******************/
- mov.l   _pram0,     r1
+ mov.l   pram0,     r1
  mov.l   _p04050607, r0
  mov.l   _p11223344, r2
  mov.l   r0,  @(0, r1)
  mov.l   r2,  @(4, r1)
  
  mov.b   @(0, r1), r0
- mov.l   _pram0, r3 
+ mov.l   pram0, r3 
  mov.l   @(r0, r3), r4
  mov.l   _p11223344, r0
  cmp/eq  r4, r0
@@ -251,7 +251,7 @@ _mova_target4:
  jmp    @r13
  nop
  
- mov.l   _pram0, r3 
+ mov.l   pram0, r3 
  mov.b   @(0, r1), r0
  mov.l   @(r0, r3), r4
  mov.l   _p11223344, r0
@@ -263,8 +263,8 @@ _mova_target4:
 /*******************
  MOV.B Rm, @(R0, Rn)
  *******************/
- mov.l   _pram0,     r1
- mov.l   _pram0_16,  r3
+ mov.l   pram0,     r1
+ mov.l   pram0_16,  r3
  mov.l   _p00010203, r0
  mov.l   _p04050607, r2
  mov.l   r0,  @(0, r1)
@@ -296,8 +296,8 @@ _mova_target4:
 /*******************
  MOV.W Rm, @(R0, Rn)
  *******************/
- mov.l   _pram0,     r1
- mov.l   _pram0_16,  r3
+ mov.l   pram0,     r1
+ mov.l   pram0_16,  r3
  mov.l   _p00010203, r0
  mov.l   _p04050607, r2
  mov.l   r0,  @(0, r1)
@@ -329,8 +329,8 @@ _mova_target4:
 /***********************
  MOV.L Rm, @(R0, Rn)
  ***********************/
- mov.l   _pram0,     r1
- mov.l   _pram0_16,  r3
+ mov.l   pram0,     r1
+ mov.l   pram0_16,  r3
  mov.l   _p00010203, r0
  mov.l   _p04050607, r2
  mov.l   r0,  @(0, r1)
@@ -362,7 +362,7 @@ _mova_target4:
 
  mov.l   _p01234567, r2
  mov.b   @(4, r1), r0   ! r0=4
- mov.l   _pram0_16,  r3
+ mov.l   pram0_16,  r3
  mov.l   r2, @(r0, r3)
  mov     r3, r5
  add     #4, r5
@@ -378,10 +378,10 @@ _mova_target4:
  bra    _constantend
  nop
 .align 4
-_pram0    : .long _ram0+128
-_pram0_4  : .long _ram0+128+4
-_pram0_12 : .long _ram0+128+16-4
-_pram0_16 : .long _ram0+128+16
+pram0    : .long ram0+128
+pram0_4  : .long ram0+128+4
+pram0_12 : .long ram0+128+16-4
+pram0_16 : .long ram0+128+16
 _p01234567: .long 0x01234567
 _p89abcdef: .long 0x89abcdef
 _p55aa55aa: .long 0x55aa55aa
