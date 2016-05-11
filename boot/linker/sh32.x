@@ -2,7 +2,8 @@
  SuperH (SH-2) C Compiler Linker Script
  **************************************/ 
 
-OUTPUT_FORMAT("elf32-sh")
+/* OUTPUT_FORMAT("elf32-sh") */
+OUTPUT_FORMAT("elf32-shbig-linux")
 OUTPUT_ARCH(sh)
 
 MEMORY
@@ -37,7 +38,10 @@ __idata_start = ADDR(.text) + SIZEOF(.text) + SIZEOF(.tors) + SIZEOF(.rodata);
 .data : AT(__idata_start) {
 	__idata_start = .;
         _sdata = . ;
+	*(.got)
+	*(.got.*)
 	*(.data)
+	*(.data.*)
 	_edata = . ;
 	}  > ram
 __idata_end = __idata_start + SIZEOF(.data);

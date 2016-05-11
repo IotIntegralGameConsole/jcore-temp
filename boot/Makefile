@@ -111,7 +111,7 @@ AR = $(CROSS_COMPILE)ar
 RANLIB = $(CROSS_COMPILE)ranlib
 LDFLAGS = -T linker/sh32.x
 LIBGCC := $(shell $(CC) -print-libgcc-file-name)
-LIBGCC += $(shell $(CC) -print-file-name=libgcc-Os-4-200.a)
+#LIBGCC += $(shell $(CC) -print-file-name=libgcc-Os-4-200.a)
 
 CFLAGS := -m2 -g -Os -Wall -Werror
 CFLAGS += -std=gnu99

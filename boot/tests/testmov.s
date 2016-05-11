@@ -79,8 +79,8 @@ _ldssts:
  ****************/
 _ldslstsl:
  clrmac
- mov.l  _pram0, r1
- mov.l  _pram0_16, r2
+ mov.l  pram0, r1
+ mov.l  pram0_16, r2
  mov.l  _p01234567, r0
  mov.l  r0, @r1
 !----
@@ -99,13 +99,13 @@ _ldslstsl:
  jmp    @r13
  nop
 !----
- mov.l  _pram0_4, r4
+ mov.l  pram0_4, r4
  cmp/eq r4, r1
  bt     .+6
  jmp    @r13
  nop
 !----
- mov.l  _pram0_12, r5 !_pram0+16-4
+ mov.l  pram0_12, r5 !pram0+16-4
  cmp/eq r5, r2
  bt     .+6
  jmp    @r13
@@ -116,8 +116,8 @@ _ldslstsl:
  STS.L MACL, @-Rn
  ****************/
  clrmac
- mov.l  _pram0, r1
- mov.l  _pram0_16, r2
+ mov.l  pram0, r1
+ mov.l  pram0_16, r2
  mov.l  _p89abcdef, r0
  mov.l  r0, @r1
 !----
@@ -136,13 +136,13 @@ _ldslstsl:
  jmp    @r13
  nop
 !----
- mov.l  _pram0_4, r4
+ mov.l  pram0_4, r4
  cmp/eq r4, r1
  bt     .+6
  jmp    @r13
  nop
 !----
- mov.l  _pram0_12, r5 !_pram0+16-4
+ mov.l  pram0_12, r5 !pram0+16-4
  cmp/eq r5, r2
  bt     .+6
  jmp    @r13
@@ -152,8 +152,8 @@ _ldslstsl:
  LDS.L @Rm+, PR
  STS.L PR, @-Rn
  **************/
- mov.l  _pram0, r1
- mov.l  _pram0_16, r2
+ mov.l  pram0, r1
+ mov.l  pram0_16, r2
  mov.l  _p11223344, r0
  mov.l  r0, @r1
 !----
@@ -172,13 +172,13 @@ _ldslstsl:
  jmp    @r13
  nop
 !----
- mov.l  _pram0_4, r4
+ mov.l  pram0_4, r4
  cmp/eq r4, r1
  bt     .+6
  jmp    @r13
  nop
 !----
- mov.l  _pram0_12, r5 !_pram0+16-4
+ mov.l  pram0_12, r5 !pram0+16-4
  cmp/eq r5, r2
  bt     .+6
  jmp    @r13
@@ -191,8 +191,8 @@ _ldslstsl:
 _ldclstcl:
  mov    #0, r0
  ldc    r0, sr
- mov.l  _pram0, r1
- mov.l  _pram0_16, r2
+ mov.l  pram0, r1
+ mov.l  pram0_16, r2
  mov    #0xff, r0
  mov.l  r0, @r1
  mov.l  _p000003f3, r0
@@ -212,13 +212,13 @@ _ldclstcl:
  jmp    @r13
  nop
 !----
- mov.l  _pram0_4, r4
+ mov.l  pram0_4, r4
  cmp/eq r4, r1
  bt     .+6
  jmp    @r13
  nop
 !----
- mov.l  _pram0_12, r5 !_pram0+16-4
+ mov.l  pram0_12, r5 !pram0+16-4
  cmp/eq r5, r2
  bt     .+6
  jmp    @r13
@@ -230,8 +230,8 @@ _ldclstcl:
  ***************/
  mov    #0, r0
  ldc    r0, gbr
- mov.l  _pram0, r1
- mov.l  _pram0_16, r2
+ mov.l  pram0, r1
+ mov.l  pram0_16, r2
  mov.l  _p11223344, r0
  mov.l  r0, @r1
 !----
@@ -250,13 +250,13 @@ _ldclstcl:
  jmp    @r13
  nop
 !----
- mov.l  _pram0_4, r4
+ mov.l  pram0_4, r4
  cmp/eq r4, r1
  bt     .+6
  jmp    @r13
  nop
 !----
- mov.l  _pram0_12, r5 !_pram0+16-4
+ mov.l  pram0_12, r5 !pram0+16-4
  cmp/eq r5, r2
  bt     .+6
  jmp    @r13
@@ -268,8 +268,8 @@ _ldclstcl:
  ***************/
  mov    #0, r0
  ldc    r0, vbr
- mov.l  _pram0, r1
- mov.l  _pram0_16, r2
+ mov.l  pram0, r1
+ mov.l  pram0_16, r2
  mov.l  _p89abcdef, r0
  mov.l  r0, @r1
 !----
@@ -288,13 +288,13 @@ _ldclstcl:
  jmp    @r13
  nop
 !----
- mov.l  _pram0_4, r4
+ mov.l  pram0_4, r4
  cmp/eq r4, r1
  bt     .+6
  jmp    @r13
  nop
 !----
- mov.l  _pram0_12, r5 !_pram0+16-4
+ mov.l  pram0_12, r5 !pram0+16-4
  cmp/eq r5, r2
  bt     .+6
  jmp    @r13
@@ -304,7 +304,7 @@ _ldclstcl:
  MOV.L Rm, @-Rn
  **************/
 _movlramr:
- mov.l  _pram0, r1
+ mov.l  pram0, r1
  mov.l  _paabbccdd, r0
 !----
  mov    r1, r2
@@ -326,7 +326,7 @@ _movlramr:
  MOV.W Rm, @-Rn
  **************/
 _movwramr:
- mov.l  _pram0, r1
+ mov.l  pram0, r1
  mov.w  _paabb, r0
 !----
  mov    r1, r2
@@ -348,7 +348,7 @@ _movwramr:
  MOV.B Rm, @-Rn
  **************/
 _movbramr:
- mov.l  _pram0, r1
+ mov.l  pram0, r1
  mov    #0xaa, r0
 !----
  mov    r1, r2
@@ -370,7 +370,7 @@ _movbramr:
  MOV.L @Rm+, Rn
  **************/
 _movlarpr:
- mov.l  _pram0, r1
+ mov.l  pram0, r1
  mov.l  _paabbccdd, r0
  mov.l  r0, @r1
 !----
@@ -392,7 +392,7 @@ _movlarpr:
  MOV.W @Rm+, Rn
  **************/
 _movwarpr:
- mov.l  _pram0, r1
+ mov.l  pram0, r1
  mov.w  _paabb, r0
  mov.w  r0, @r1
 !----
@@ -414,7 +414,7 @@ _movwarpr:
  MOV.B @Rm+, Rn
  **************/
 _movbarpr:
- mov.l  _pram0, r1
+ mov.l  pram0, r1
  mov    #0xaa, r0
  mov.b  r0, @r1
 !----
@@ -436,7 +436,7 @@ _movbarpr:
  MOV.L @Rm+, Rm
  **************/
 _movlarpr2:
- mov.l  _pram0, r1
+ mov.l  pram0, r1
  mov.l  _paabbccdd, r0
  mov.l  r0, @r1
 !----
@@ -451,7 +451,7 @@ _movlarpr2:
  MOV.W @Rm+, Rm
  **************/
 _movwarpr2:
- mov.l  _pram0, r1
+ mov.l  pram0, r1
  mov.w  _paabb, r0
  mov.w  r0, @r1
 !----
@@ -466,7 +466,7 @@ _movwarpr2:
  MOV.B @Rm+, Rm
  **************/
 _movbarpr2:
- mov.l  _pram0, r1
+ mov.l  pram0, r1
  mov    #0xaa, r0
  mov.b  r0, @r1
 !----
@@ -482,7 +482,7 @@ _movbarpr2:
  MOV.L/W/B Rm, @Rn
  *****************/
 _movlwb:
- mov.l  _pram0, r2
+ mov.l  pram0, r2
  mov.l  _p11223344, r1
  mov.l  r1, @r2
 !----
@@ -508,7 +508,7 @@ _movlwb:
  jmp    @r13
  nop
 !----
- mov.l  _pram0, r0
+ mov.l  pram0, r0
  mov    #0xaa, r1
  mov.b  r1, @r0
  add    #1, r0
@@ -522,7 +522,7 @@ _movlwb:
  mov.l  _pffffaabb, r9
  mov.l  _pffffffaa, r10
 !----
- mov.l  _pram0, r0
+ mov.l  pram0, r0
  mov.l  @r0, r2
  cmp/eq r2, r8
  bt     .+6
@@ -547,10 +547,10 @@ _movlwb:
  bra    _constantend
  nop
 .align 4
-_pram0    : .long _ram0+128
-_pram0_4  : .long _ram0+128+4
-_pram0_12 : .long _ram0+128+16-4
-_pram0_16 : .long _ram0+128+16
+pram0    : .long ram0+128
+pram0_4  : .long ram0+128+4
+pram0_12 : .long ram0+128+16-4
+pram0_16 : .long ram0+128+16
 _p01234567: .long 0x01234567
 _p89abcdef: .long 0x89abcdef
 _p55aa55aa: .long 0x55aa55aa
@@ -573,13 +573,13 @@ _constantend:
  CAS Rm, Rn, @R0
  *****************/
 _cas_r:
- mov.l  _pram0_cas, r0
+ mov.l  pram0_cas, r0
  mov.l  _p11223344_cas, r1
  mov.l  _p00001122_cas, r2
  mov.l  _p55aa55aa_cas, r3
  mov.l  r1, @r0
 
- mov.l  _pram0_4_cas, r4
+ mov.l  pram0_4_cas, r4
  mov.l  _paabbccdd_cas, r5
  mov.l  r5, @r4
 !----
@@ -695,8 +695,8 @@ _cas_r:
  bra    _constantend_cas
  nop
 .align 4
-_pram0_cas    : .long _ram0+128
-_pram0_4_cas  : .long _ram0+128+4
+pram0_cas    : .long ram0+128
+pram0_4_cas  : .long ram0+128+4
 _p55aa55aa_cas: .long 0x55aa55aa
 _p11223344_cas: .long 0x11223344
 _p00001122_cas: .long 0x00001122

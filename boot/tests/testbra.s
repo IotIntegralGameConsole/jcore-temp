@@ -15,7 +15,7 @@ _testgo:
  BRA and load contention
  ***********************/
  mov    #0x8b, r0 
- mov.l  _pram0, r1
+ mov.l  pram0, r1
  mov.l  r0, @r1
 
  nop
@@ -173,7 +173,7 @@ _endjmpjsr:
  BT/S disp
  BF/S disp
  *********/
- mov.l  _pram0, r1
+ mov.l  pram0, r1
  mov    #0xa0, r0
  mov.b  r0, @(0, r1)
  add    #1, r0
@@ -223,7 +223,7 @@ _btspass:
  *********************/
  mov    #(target_bsrf - origin_bsrf), r0
  mov    #0xab, r1
- mov.l  _pram0, r2
+ mov.l  pram0, r2
  bsrf   r0
  mov.l  r1, @r2
 origin_bsrf:
@@ -249,7 +249,7 @@ _bsrfend:
  **********/
  mov    #(target_braf - origin_braf), r0
  mov    #0xab, r1
- mov.l  _pram0, r2
+ mov.l  pram0, r2
  braf   r0
  mov.l  r1, @r2
 origin_braf:
@@ -518,7 +518,7 @@ _pabcdef78: .long 0xabcdef78
 _pabcdef01: .long 0xabcdef01
 _p00000001: .long 0x00000001
 _pffffffff: .long 0xffffffff
-_pram0    : .long _ram0+128
+pram0    : .long ram0+128
 .align 2
 _constantend:
 

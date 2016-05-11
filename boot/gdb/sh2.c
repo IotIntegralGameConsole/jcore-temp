@@ -360,7 +360,7 @@ int gdb_trapa34 (int syscall, int arg1, int arg2, int arg3)
 
 static int i_cnt = 50; /* toggle LED 2Hz */
 static int led = 0;
-void gdb_pit ()
+void gdb_pit()
 {
         if (!(i_cnt--)) {
                 i_cnt = 50;
@@ -372,7 +372,7 @@ void gdb_pit ()
 void gdb_flush_cache (void *start, int len) { return; }
 
 
-__asm__(
+__asm__ (
 
 ".section .text\n"
 "save_registers_handle_exception:\n"
@@ -445,8 +445,8 @@ __asm__(
 "  nop\n"
 
 "  .align 2\n"
-"  handle_exception: .long _gdb_handle_exception\n"
-"  register_file_end: .long _register_file+88\n"
+"  handle_exception: .long gdb_handle_exception\n"
+"  register_file_end: .long register_file+88\n"
 
 
 /*
@@ -460,8 +460,8 @@ __asm__(
   loop on it indefinitely.  Use TRAPA #33 instead.
 */
 ".section .text\n"
-".global _gdb_trapa32_isr\n"
-"_gdb_trapa32_isr:\n"
+".global gdb_trapa32_isr\n"
+"gdb_trapa32_isr:\n"
 
   /* put r0, r1 on the stack */
 "  mov.l r0, @-r15\n"
@@ -487,8 +487,8 @@ __asm__(
 
 
 ".section .text\n"
-".global _gdb_trapa33_isr\n"
-"_gdb_trapa33_isr:\n"
+".global gdb_trapa33_isr\n"
+"gdb_trapa33_isr:\n"
 "  mov.l r0, @-r15\n"
 "  mov   #0xf0, r0\n"
 "  ldc   r0, sr\n"
@@ -502,10 +502,10 @@ __asm__(
    PIT
 */
 ".section .text\n"
-".global _gdb_my_isr\n"
-"_gdb_my_isr:\n"
+".global gdb_my_isr\n"
+"gdb_my_isr:\n"
 "  sts.l pr,@-r15\n"
-"  bsr _gdb_pit\n"
+"  bsr gdb_pit\n"
 "  nop\n"
 "  lds.l @r15+, pr\n"
 "  rte\n"
@@ -517,18 +517,18 @@ __asm__(
    to gdb_console_write().
 */
 ".section .text\n"
-".global _gdb_trapa34_isr\n"
-"_gdb_trapa34_isr:\n"
+".global gdb_trapa34_isr\n"
+"gdb_trapa34_isr:\n"
 "  sts.l pr,@-r15\n"
-"  bsr _gdb_trapa34\n"
+"  bsr gdb_trapa34\n"
 "  nop\n"
 "  lds.l @r15+, pr\n"
 "  rte\n"
 "  nop\n"
 
 ".section .text\n"
-".global _gdb_unhandled_isr\n"
-"_gdb_unhandled_isr:\n"
+".global gdb_unhandled_isr\n"
+"gdb_unhandled_isr:\n"
 "  mov.l r0, @-r15\n"
 "  mov   #0xf0, r0\n"
 "  ldc   r0, sr\n"
@@ -539,8 +539,8 @@ __asm__(
 "  nop\n"
 
 ".section .text\n"
-".global _gdb_nmi_isr\n"
-"_gdb_nmi_isr:\n"
+".global gdb_nmi_isr\n"
+"gdb_nmi_isr:\n"
 "  mov.l r0, @-r15\n"
 "  mov   #0xf0, r0\n"
 "  ldc   r0, sr\n"
@@ -551,8 +551,8 @@ __asm__(
 "  nop\n"
 
 ".section .text\n"
-".global _gdb_illegalinst_isr\n"
-"_gdb_illegalinst_isr:\n"
+".global gdb_illegalinst_isr\n"
+"gdb_illegalinst_isr:\n"
 "  mov.l r0, @-r15\n"
 "  mov   #0xf0, r0\n"
 "  ldc   r0, sr\n"
@@ -563,8 +563,8 @@ __asm__(
 "  nop\n"
 
 ".section .text\n"
-".global _gdb_addresserr_isr\n"
-"_gdb_addresserr_isr:\n"
+".global gdb_addresserr_isr\n"
+"gdb_addresserr_isr:\n"
 "  mov.l r0, @-r15\n"
 "  mov   #0xf0, r0\n"
 "  ldc   r0, sr\n"
@@ -577,17 +577,15 @@ __asm__(
 
 /* Restores registers to the values specified in register_file.  */
 ".section .text\n"
-".global _gdb_return_from_exception\n"
-"_gdb_return_from_exception:\n"
-
+".global gdb_return_from_exception\n"
+"gdb_return_from_exception:\n"
   /* find register_file */
-"  mov.l register_file, r0\n"
+"  mov.l p_register_file, r0\n"
 "  lds.l @r0+, pr\n"
 "  ldc.l @r0+, gbr\n"
 "  ldc.l @r0+, vbr\n"
 "  lds.l @r0+, mach\n"
 "  lds.l @r0+, macl\n"
-
   /* skip r0 and r1 for now,
      since we're using them */
 "  add #8, r0\n"
@@ -623,20 +621,18 @@ __asm__(
 "  rte\n"
 "  nop\n"
 ".align 2\n"
-"  register_file: .long _register_file\n"
-
+"  p_register_file: .long register_file\n"
 
 /* "kill" and "detach" try to simulate a reset */
 ".section .text\n"
-".global _gdb_kill\n"
-".global _gdb_detach\n"
-"_gdb_kill:\n"
-"_gdb_detach:\n"
+".global gdb_kill\n"
+".global gdb_detach\n"
+"gdb_kill:\n"
+"gdb_detach:\n"
 "   mov #4, r15\n"
 "   mov.l @r15, r15\n"
 "   mov #0, r0\n"
 "   mov.l @r0, r0\n"
 "   jmp @r0\n"
 "   nop\n"
-
 );

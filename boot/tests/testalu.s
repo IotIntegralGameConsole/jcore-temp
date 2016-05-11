@@ -159,7 +159,7 @@ _negpass :
 /*********
  TAS.B @Rn
  *********/
- mov.l  _pram0, r1
+ mov.l  pram0, r1
  mov    #0x55, r0
  mov.b  r0, @r1
  tas.b  @r1
@@ -418,7 +418,7 @@ _loop_dt:
 /**********************
  XOR.B #imm, @(R0, GBR)
  **********************/
- mov.l  _pram0, r1
+ mov.l  pram0, r1
  ldc    r1, gbr
 
  mov    #0xaa, r0
@@ -484,7 +484,7 @@ _loop_dt:
 /**********************
  TST.B #imm, @(R0, GBR)
  **********************/
- mov.l  _pram0, r1
+ mov.l  pram0, r1
  ldc    r1, gbr
 
  mov    #0xaa, r0
@@ -561,7 +561,7 @@ _loop_dt:
 /**********************
  AND.B #imm, @(R0, GBR)
  **********************/
- mov.l  _pram0, r1
+ mov.l  pram0, r1
  ldc    r1, gbr
 
  mov    #0x00, r0
@@ -650,7 +650,7 @@ _loop_dt:
 /*********************
  OR.B #imm, @(R0, GBR)
  *********************/
- mov.l  _pram0, r1
+ mov.l  pram0, r1
  ldc    r1, gbr
 
  mov    #0x00, r0
@@ -707,7 +707,7 @@ _loop_dt:
  bra    _constantend
  nop
 .align 4
-_pram0     : .long _ram0+128
+pram0     : .long ram0+128
 _p7fffffff : .long 0x7fffffff
 _p80000000 : .long 0x80000000
 _p00112233 : .long 0x00112233
