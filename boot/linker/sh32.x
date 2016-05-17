@@ -2,7 +2,8 @@
  SuperH (SH-2) C Compiler Linker Script
  **************************************/ 
 
-OUTPUT_FORMAT("elf32-sh")
+/* OUTPUT_FORMAT("elf32-sh") */
+OUTPUT_FORMAT("elf32-shbig-linux")
 OUTPUT_ARCH(sh)
 
 
