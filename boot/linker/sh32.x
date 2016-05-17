@@ -2,14 +2,15 @@
  SuperH (SH-2) C Compiler Linker Script
  **************************************/ 
 
-/* OUTPUT_FORMAT("elf32-sh") */
-OUTPUT_FORMAT("elf32-shbig-linux")
+OUTPUT_FORMAT("elf32-sh")
 OUTPUT_ARCH(sh)
+
+
 
 MEMORY
 {
-	ram    : o = 0x00000000, l = 0x7b00
-	stack  : o = 0x00007d00, l = 0x0300
+    rom    : o = 0x00000000, l = 0x00008000 /* 32kB @ 0x00000000 */
+	ram    : o = 0x10000000, l = 0x04000000 /* 64MB @ 0x10000000 */
 }
 
 SECTIONS 				
@@ -19,7 +20,7 @@ SECTIONS
 	*(.text) 				
 	*(.strings)
    	 _etext = . ; 
-	}  > ram
+	}  > rom
 
 .tors : {
 	___ctors = . ;
@@ -28,11 +29,11 @@ SECTIONS
 	___dtors = . ;
 	*(.dtors)
 	___dtors_end = . ;
-	}  > ram
+	}  > rom
 
 .rodata : {
     *(.rodata*)
-    } >ram
+    } > rom
 
 __idata_start = ADDR(.text) + SIZEOF(.text) + SIZEOF(.tors) + SIZEOF(.rodata); 
 .data : AT(__idata_start) {
@@ -52,10 +53,14 @@ __idata_end = __idata_start + SIZEOF(.data);
 	*(COMMON)
 	_end = .;
 	}  >ram
+	. = . + STACK_SIZE
+	_stack = .;
 
+/*
 .stack :
 	{
 	_stack = .;
 	*(.stack)
 	} > stack
+*/
 }
