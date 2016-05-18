@@ -1,6 +1,6 @@
 /**************************************
  SuperH (SH-2) C Compiler Linker Script
- **************************************/ 
+ **************************************/
 
 /* OUTPUT_FORMAT("elf32-sh") */
 OUTPUT_FORMAT("elf32-shbig-linux")
@@ -23,13 +23,13 @@ MEMORY
     dram (rw) : o = 0x01000000, l = 0x04000000 /* 64MB @ 0x01000000 */
 }
 
-SECTIONS                
+SECTIONS
 {
 .text : {
     *(.vect)
-    *(.text)                
+    *(.text)
     *(.strings)
-     _etext = . ; 
+     _etext = . ;
     } > sram
 
 .tors : {
