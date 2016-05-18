@@ -2,27 +2,25 @@
  SuperH (SH-2) C Compiler Linker Script
  **************************************/ 
 
-OUTPUT_FORMAT("elf32-sh")
+/* OUTPUT_FORMAT("elf32-sh") */
+OUTPUT_FORMAT("elf32-shbig-linux")
 OUTPUT_ARCH(sh)
 
-/* ROM_SIZE was chosen based on the size of boot.bin */
-ROM_BASE   = 0x00000000; /* 32kB @ 0x00000000 */
-ROM_SIZE   = 0x00008000;
+SRAM_BASE  = 0x00000000; /* 32kB @ 0x00000000 */
+SRAM_SIZE  = 0x00008000;
 
-/* RAM_BASE chosen based on targets/boards/mimas_v2/board.h */
-/* RAM_SIZE chosen based on mimas_v2 specs (64 MB SDRAM) */
-RAM_BASE   = 0x10000000; /* 64MB @ 0x10000000 */
-RAM_SIZE   = 0x04000000;
+DRAM_BASE   = 0x01000000; /* 64MB @ 0x01000000 */
+DRAM_SIZE   = 0x04000000;
 
 /* STACK_SIZE chosen based on typical requirements */
 /* STACK_BASE chosen to be last word in SDRAM (stack grows down) */
 STACK_SIZE = 0x00000400;
-STACK_BASE = RAM_BASE + RAM_SIZE - 4;
+STACK_BASE = SRAM_BASE + SRAM_SIZE - 4;
 
 MEMORY
 {
-    rom    : o = 0x00000000, l = 0x00008000 /* 32kB @ 0x00000000 */
-    ram    : o = 0x10000000, l = 0x04000000 /* 64MB @ 0x10000000 */
+    sram (rw) : o = 0x00000000, l = 0x00008000 /* 32kB @ 0x00000000 */
+    dram (rw) : o = 0x01000000, l = 0x04000000 /* 64MB @ 0x01000000 */
 }
 
 SECTIONS                
@@ -32,7 +30,7 @@ SECTIONS
     *(.text)                
     *(.strings)
      _etext = . ; 
-    }  > rom
+    } > sram
 
 .tors : {
     ___ctors = . ;
@@ -41,11 +39,11 @@ SECTIONS
     ___dtors = . ;
     *(.dtors)
     ___dtors_end = . ;
-    }  > rom
+    } > sram
 
 .rodata : {
     *(.rodata*)
-    } > rom
+    } > sram
 
 .data : {
     _sdata = . ;
@@ -54,15 +52,18 @@ SECTIONS
     *(.data)
     *(.data.*)
     _edata = . ;
-    }  > ram
+    } > sram
 
 .bss : {
     _bss_start = .;
     *(.bss)
     *(COMMON)
     _end = .;
-    }  >ram
+    } > sram
 
-    . = STACK_BASE;
-    _stack = .;
+stack : {
+	ASSERT( ( . < STACK_BASE ), "boot rom has overflowed SRAM" );
+	_stack = .;
+    *(.stack)
+    } > sram
 }
